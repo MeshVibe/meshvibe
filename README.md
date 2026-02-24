@@ -1,4 +1,4 @@
-# MeshVibe
+# mesh-vibe
 
 Composable AI-powered tools that work together. Build your own personal ops ecosystem — each tool is a standalone CLI that plugs into a shared infrastructure of secrets, scheduling, notifications, and discovery.
 
@@ -6,21 +6,21 @@ Built for tinkerers. Every piece works alone, but they're better together.
 
 ## Architecture
 
-MeshVibe is conventions, not a framework. Every tool follows the same shape:
+mesh-vibe is conventions, not a framework. Every tool follows the same shape:
 
 ```
 ~/IdeaProjects/ProjectName/        # source code
-~/mesh-vibe/data/projectname/      # runtime data, reports, state
+~/mesh-vibe/data/project-name/     # runtime data, reports, state
 ~/mesh-vibe/heartbeat/             # scheduled task config
 ```
 
 Shared infrastructure:
-- **Vault** — secrets via macOS Keychain
-- **Heartbeat** — scheduled task runner
-- **EventLog** — shared event journal (planned)
-- **Notify** — unified alerting (planned)
-- **Registry** — service catalog and discovery (planned)
-- **Dashboard** — unified HTML dashboard (planned)
+- **vault** — secrets via macOS Keychain
+- **heartbeat** — scheduled task runner
+- **event-log** — shared event journal
+- **notify** — unified alerting
+- **registry** — service catalog and discovery
+- **dashboard** — unified HTML dashboard (planned)
 
 ## Projects
 
@@ -28,34 +28,39 @@ Shared infrastructure:
 
 | Project | Description | CLI | Status |
 |---------|-------------|-----|--------|
-| [vault](https://github.com/MeshVibe/vault) | macOS Keychain secret manager | `vault` | Stable |
-| [heartbeat](https://github.com/MeshVibe/heartbeat) | Scheduled task runner for Claude Code | `heartbeat` | Stable |
-| [eventlog](https://github.com/MeshVibe/eventlog) | Shared event journal | `eventlog` | Planned |
-| [registry](https://github.com/MeshVibe/registry) | Service catalog and health checks | `registry` | Planned |
-| [notify](https://github.com/MeshVibe/notify) | Unified notification routing | `notify` | Planned |
-| [dashboard](https://github.com/MeshVibe/dashboard) | Unified HTML dashboard | `dashboard` | Planned |
+| [vault](https://github.com/mesh-vibe/vault) | macOS Keychain secret manager | `vault` | Stable |
+| [heartbeat](https://github.com/mesh-vibe/heartbeat) | Scheduled task runner for Claude Code | `heartbeat` | Stable |
+| [event-log](https://github.com/mesh-vibe/event-log) | Shared event journal | `eventlog` | Stable |
+| [registry](https://github.com/mesh-vibe/registry) | Service catalog and health checks | `registry` | Stable |
+| [notify](https://github.com/mesh-vibe/notify) | Unified notification routing | `notify` | Stable |
+| [dashboard](https://github.com/mesh-vibe/dashboard) | Unified HTML dashboard | `dashboard` | Planned |
 
 ### Bots
 
 | Project | Description | CLI | Data Dir | Status |
 |---------|-------------|-----|----------|--------|
-| [newsbot](https://github.com/MeshVibe/newsbot) | Personal news aggregation from RSS + browser history | `newsbot` | `~/mesh-vibe/data/newsbot/` | Stable |
-| [securitybot](https://github.com/MeshVibe/securitybot) | Autonomous security scanning and threat detection | `securitybot` | `~/mesh-vibe/data/securitybot/` | Planned |
-| [costbot](https://github.com/MeshVibe/costbot) | API spend monitoring and anomaly detection | `costbot` | `~/mesh-vibe/data/costbot/` | Planned |
-| [sysadminbot](https://github.com/MeshVibe/sysadminbot) | Autonomous service supervisor | `sysadminbot` | `~/mesh-vibe/data/sysadminbot/` | Planned |
-| [standardsbot](https://github.com/MeshVibe/standardsbot) | Convention enforcement against MeshVibe standards | `standardsbot` | `~/mesh-vibe/data/standardsbot/` | Planned |
+| [news-bot](https://github.com/mesh-vibe/news-bot) | Personal news aggregation from RSS + browser history | `newsbot` | `~/mesh-vibe/data/news-bot/` | Stable |
+| [security-bot](https://github.com/mesh-vibe/security-bot) | Autonomous security scanning and threat detection | `securitybot` | `~/mesh-vibe/data/security-bot/` | Planned |
+| [cost-bot](https://github.com/mesh-vibe/cost-bot) | API spend monitoring and anomaly detection | `costbot` | `~/mesh-vibe/data/cost-bot/` | Planned |
+| [sysadmin-bot](https://github.com/mesh-vibe/sysadmin-bot) | Autonomous service supervisor | `sysadminbot` | `~/mesh-vibe/data/sysadmin-bot/` | Planned |
+| [standards-bot](https://github.com/mesh-vibe/standards-bot) | Convention enforcement against mesh-vibe standards | `standardsbot` | `~/mesh-vibe/data/standards-bot/` | Planned |
 
 ### Interfaces
 
 | Project | Description | CLI | Status |
 |---------|-------------|-----|--------|
-| [uterm](https://github.com/MeshVibe/uterm) | Terminal with Claude co-pilot | `uterm` | Stable |
-| [voiceclaude](https://github.com/MeshVibe/voiceclaude) | Voice interface for Claude | `voiceclaude` | Stable |
-| [remote-companion](https://github.com/MeshVibe/remote-companion) | Mobile app for the ecosystem | — | In Progress |
+| [uterm](https://github.com/mesh-vibe/uterm) | Terminal with Claude co-pilot | `uterm` | Stable |
+| [voice-claude](https://github.com/mesh-vibe/voice-claude) | Voice interface for Claude | `voiceclaude` | Stable |
+| [remote-companion](https://github.com/mesh-vibe/remote-companion) | Mobile app for the ecosystem | — | In Progress |
 
 ## Conventions
 
 All projects follow these rules. AI agents building new tools should match them exactly.
+
+### Naming
+- Repo names use **kebab-case** (hyphenated lowercase): `news-bot`, `event-log`, `sysadmin-bot`
+- CLI commands use **no hyphens** for brevity: `newsbot`, `eventlog`, `sysadminbot`
+- Package names use the `meshvibe-` prefix: `meshvibe-newsbot`, `meshvibe-registry`
 
 ### Stack
 - TypeScript strict, ESM (`"type": "module"`)
@@ -96,11 +101,11 @@ project-name/
 ```
 ~/mesh-vibe/
 ├── data/
-│   ├── newsbot/          # runtime data per bot
-│   ├── securitybot/
-│   ├── costbot/
-│   ├── sysadminbot/
-│   ├── eventlog/
+│   ├── news-bot/         # runtime data per bot
+│   ├── security-bot/
+│   ├── cost-bot/
+│   ├── sysadmin-bot/
+│   ├── event-log/
 │   └── dashboard/
 └── heartbeat/            # scheduled task configs
     ├── config.md
@@ -108,14 +113,14 @@ project-name/
 ```
 
 ### Secrets
-Use Vault. Never hardcode keys. In Heartbeat tasks use the `vault://` prefix:
+Use vault. Never hardcode keys. In heartbeat tasks use the `vault://` prefix:
 ```yaml
 env:
   API_KEY: "vault://my-api-key"
 ```
 
 ### Scheduling
-Add a Heartbeat task file in `~/mesh-vibe/heartbeat/`:
+Add a heartbeat task file in `~/mesh-vibe/heartbeat/`:
 ```yaml
 ---
 schedule: daily at 05:00
@@ -130,9 +135,9 @@ Your prompt here.
 ```
 
 ### Events
-Bots emit structured events via EventLog:
+Bots emit structured events via event-log:
 ```bash
-eventlog emit "newsbot.scan_complete" --priority low --data '{"articles": 25}'
+eventlog emit "news-bot.scan_complete" --priority low --data '{"articles": 25}'
 ```
 
 Standard events every bot should emit:
@@ -145,32 +150,32 @@ Standard events every bot should emit:
 Bots that produce HTML reports write them to their data dir:
 - Path: `~/mesh-vibe/data/<bot>/report.html`
 - Dashboard aggregates all reports into a single view
-- Declare reports in the manifest so Dashboard and Registry can discover them
+- Declare reports in the manifest so dashboard and registry can discover them
 
 ### Notifications
-Bots declare `notify_on` events in their manifest. Notify reads the Registry to find available channels and routes alerts based on priority:
+Bots declare `notify_on` events in their manifest. notify reads the registry to find available channels and routes alerts based on priority:
 - **critical** — SMS + push + macOS notification
 - **high** — push + macOS notification
 - **medium** — macOS notification
-- **low** — logged only, visible in Dashboard
+- **low** — logged only, visible in dashboard
 
 ### Claude Code Skills
 Each project installs a skill via `<cli> init` to `~/.claude/skills/<name>/SKILL.md`. Skills use YAML frontmatter with `name` and `description` fields.
 
 ## Manifest Format
 
-Every project has a `manifest.md` in its root. This is how the Registry discovers and understands services.
+Every project has a `manifest.md` in its root. This is how the registry discovers and understands services.
 
 ```yaml
 ---
 name: project-name
 description: One-line description
 cli: command-name
-data_dir: ~/mesh-vibe/data/projectname
+data_dir: ~/mesh-vibe/data/project-name
 version: 0.1.0
 reports:
   - name: Report Name
-    path: ~/mesh-vibe/data/projectname/report.html
+    path: ~/mesh-vibe/data/project-name/report.html
 health_check: command-name status
 depends_on:
   - vault
@@ -188,14 +193,14 @@ Longer description of what this project does and how it works.
 
 | Field | Required | Description |
 |-------|----------|-------------|
-| `name` | yes | Project identifier, lowercase, matches CLI name |
+| `name` | yes | Project identifier, kebab-case, matches repo name |
 | `description` | yes | One-line summary |
-| `cli` | yes | CLI command name (after npm link) |
+| `cli` | yes | CLI command name (no hyphens, after npm link) |
 | `data_dir` | no | Runtime data directory under `~/mesh-vibe/data/` |
 | `version` | yes | Semver |
 | `reports` | no | HTML reports this project generates |
 | `health_check` | no | Command to verify the service is healthy |
-| `depends_on` | no | Other MeshVibe projects this depends on |
+| `depends_on` | no | Other mesh-vibe projects this depends on |
 | `notify_on` | no | Events that should trigger notifications |
 
 ## Adding a New Bot
@@ -204,10 +209,10 @@ Longer description of what this project does and how it works.
 2. Add a `manifest.md` to the project root
 3. Build and link: `npm install && npm run build && npm link`
 4. Install the skill: `<cli> init`
-5. Add a Heartbeat task if it runs on a schedule
-6. Push to the MeshVibe org
+5. Add a heartbeat task if it runs on a schedule
+6. Push to the mesh-vibe org
 
-The Registry will discover it automatically from the manifest.
+The registry will discover it automatically from the manifest.
 
 ## Quick Reference
 
